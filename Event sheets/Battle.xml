@@ -112,6 +112,9 @@
                     <param id="0" name="Instance variable">Speed</param>
                     <param id="1" name="Value">0.1</param>
                 </action>
+                <action id="2" name="Set scale" sid="943945880978337" type="BattleFont">
+                    <param id="0" name="Scale">2</param>
+                </action>
             </actions>
             <sub-events>
                 <event-block sid="604254485784768">
