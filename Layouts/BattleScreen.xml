@@ -53,6 +53,7 @@
                         <CurrentChar>0</CurrentChar>
                         <T>0</T>
                         <Timeout>0</Timeout>
+                        <Speed>1</Speed>
                     </instance-variables>
                     <effect-instances>
                         <effect-instance type="Tint">
@@ -102,6 +103,7 @@
                         <CurrentChar>0</CurrentChar>
                         <T>0</T>
                         <Timeout>0</Timeout>
+                        <Speed>1</Speed>
                     </instance-variables>
                     <effect-instances>
                         <effect-instance type="Tint">

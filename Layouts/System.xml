@@ -44,6 +44,7 @@
                         <Confirm>0</Confirm>
                         <Cancel>0</Cancel>
                         <Menu>0</Menu>
+                        <Quit>0</Quit>
                         <LastUp>0</LastUp>
                         <LastDown>0</LastDown>
                         <LastLeft>0</LastLeft>
@@ -51,6 +52,7 @@
                         <LastConfirm>0</LastConfirm>
                         <LastCancel>0</LastCancel>
                         <LastMenu>0</LastMenu>
+                        <LastQuit>0</LastQuit>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -578,6 +580,7 @@
                         <CurrentChar>0</CurrentChar>
                         <T>0</T>
                         <Timeout>0</Timeout>
+                        <Speed>1</Speed>
                     </instance-variables>
                     <effect-instances>
                         <effect-instance type="Tint">
@@ -649,6 +652,7 @@
                         <CurrentChar>0</CurrentChar>
                         <T>0</T>
                         <Timeout>0</Timeout>
+                        <Speed>1</Speed>
                     </instance-variables>
                     <effect-instances>
                         <effect-instance type="Tint">
@@ -712,6 +716,13 @@
                         <Action></Action>
                         <BackAction></BackAction>
                         <Created>false</Created>
+                        <IsOption>false</IsOption>
+                        <Value>0</Value>
+                        <Step>0</Step>
+                        <Min>0</Min>
+                        <Max>0</Max>
+                        <Selected>false</Selected>
+                        <Setter></Setter>
                     </instance-variables>
                     <blend-mode>0</blend-mode>
                     <effect-fallback>0</effect-fallback>
@@ -830,6 +841,7 @@
                         <CurrentChar>0</CurrentChar>
                         <T>0</T>
                         <Timeout>0</Timeout>
+                        <Speed>1</Speed>
                     </instance-variables>
                     <effect-instances>
                         <effect-instance type="Tint">
@@ -1040,6 +1052,32 @@
                     <world>
                         <x>416</x>
                         <y>48</y>
+                        <z>0</z>
+                        <width>96</width>
+                        <height>96</height>
+                        <depth>0</depth>
+                        <hotspotX>0.5</hotspotX>
+                        <hotspotY>0.5</hotspotY>
+                        <angle>0</angle>
+                        <opacity>0.5</opacity>
+                    </world>
+                </instance>
+                <instance type="TouchESC" uid="68">
+                    <properties>
+                        <initial-visibility>Visible</initial-visibility>
+                        <initial-animation>Default</initial-animation>
+                        <initial-frame>0</initial-frame>
+                        <collisions>Enabled</collisions>
+                    </properties>
+                    <instance-variables>
+                        <TouchID>-1</TouchID>
+                        <Pressed>false</Pressed>
+                    </instance-variables>
+                    <blend-mode>0</blend-mode>
+                    <effect-fallback>0</effect-fallback>
+                    <world>
+                        <x>528</x>
+                        <y>160</y>
                         <z>0</z>
                         <width>96</width>
                         <height>96</height>

@@ -5,6 +5,7 @@
     <events>
         <event-group description="" sid="5235824354903566" title="AttackLoader">
             <sub-events>
+                <comment>It would be cool if this could be dynamic, loading from a battle script of some sort.</comment>
                 <variable constant="0" name="FileIndex" sid="8842408703534389" static="1" type="number">0</variable>
                 <event-block sid="3323177073111975">
                     <conditions>

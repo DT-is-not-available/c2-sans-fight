@@ -1,0 +1,887 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>NameScreen</name>
+    <events>
+        <include>Common</include>
+        <include>InputManagement</include>
+        <include>Fonts</include>
+        <include>RPGText</include>
+        <comment>This is not at all clean or in the style of the rest of the code but oh well.</comment>
+        <event-block sid="366142972915024">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="904743565995664" type="System" />
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="911158476071925" type="System">
+                    <param id="0" name="Object to create">BattleFont</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="X">8</param>
+                    <param id="3" name="Y">416</param>
+                </action>
+                <action id="-10" name="Set value" sid="467377857412799" type="BattleFont">
+                    <param id="0" name="Instance variable">Name</param>
+                    <param id="1" name="Value">&quot;Update&quot;</param>
+                </action>
+                <action id="-5" name="Set width" sid="329754389216838" type="BattleFont">
+                    <param id="0" name="Width">640</param>
+                </action>
+                <action id="-6" name="Set height" sid="990210552564250" type="BattleFont">
+                    <param id="0" name="Height">64</param>
+                </action>
+                <action id="0" name="Set text" sid="662101888716448" type="BattleFont">
+                    <param id="0" name="Text">&quot;UPDATE TEXT&quot;</param>
+                </action>
+                <action id="-15" name="Set visible" sid="253974626807954" type="BattleFont">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="227141204767821">
+            <conditions>
+                <condition id="19" name="On update found" sid="538999730223162" type="Browser" />
+            </conditions>
+            <actions>
+                <action id="14" name="Log" sid="798332698653169" type="Browser">
+                    <param id="0" name="Type">0</param>
+                    <param id="1" name="Message">&quot;[DEBUG] Update found&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="314358978202324" type="System">
+                    <param id="0" name="Seconds">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="186792198035852">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="688173451050337" type="RPGText">
+                            <param id="0" name="Instance variable">Name</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Update&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="888090435379309" type="BattleFont">
+                            <param id="0" name="Text">&quot;UPDATE AVAILABLE.&quot; &amp; newline &amp; &quot;DOWNLOADING...&quot;</param>
+                        </action>
+                        <action id="-15" name="Set visible" sid="685130503632084" type="RPGText">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="944927758893444">
+            <conditions>
+                <condition id="20" name="On update ready" sid="912092521768629" type="Browser" />
+            </conditions>
+            <actions>
+                <action id="14" name="Log" sid="184666719776513" type="Browser">
+                    <param id="0" name="Type">0</param>
+                    <param id="1" name="Message">&quot;[DEBUG] Update ready&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="413451675251076" type="System">
+                    <param id="0" name="Seconds">0</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="991494859039242">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="328171704450693" type="RPGText">
+                            <param id="0" name="Instance variable">Name</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Update&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-15" name="Set visible" sid="775391583045791" type="RPGText">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="0" name="Set text" sid="605147659101317" type="RPGText">
+                            <param id="0" name="Text">&quot;UPDATE AVAILABLE.&quot; &amp; newline &amp; &quot;PLEASE REFRESH THE PAGE.&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-group description="" sid="377118402799701" title="NameScreen">
+            <sub-events>
+                <variable constant="1" name="alphabet" sid="638829178409564" static="0" type="text">ABCDEFGHIJKLMNOPQRSTUVWXYZ</variable>
+                <variable constant="0" name="i" sid="985611570609710" static="0" type="number">0</variable>
+                <variable constant="0" name="x" sid="761796196549037" static="0" type="number">0</variable>
+                <variable constant="0" name="y" sid="327260604099053" static="0" type="number">0</variable>
+                <event-block sid="766801946324573">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="137522997628294" type="System" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="534661587484031">
+                            <conditions>
+                                <condition id="-8" name="Compare two values" sid="307020242700164" type="System">
+                                    <param id="0" name="First value">tickcount</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Second value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Get item" sid="870398929404333" type="LocalStorage">
+                                    <param id="0" name="Key">&quot;Name&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="753789742288495">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="577872371249975" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="694228070186596" type="Function">
+                                    <param id="0" name="Name">&quot;InitNamePrompt&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="154243851639465">
+                    <conditions>
+                        <condition id="1" name="On item get" sid="128835339066528" type="LocalStorage">
+                            <param id="0" name="Key">&quot;Name&quot;</param>
+                        </condition>
+                        <condition id="12" name="Compare value" sid="303297311630406" type="LocalStorage">
+                            <param id="0" name="Comparison">1</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="675792066119571" type="System">
+                            <param id="0" name="Variable">Name</param>
+                            <param id="1" name="Value">LocalStorage.ItemValue</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="889141747337104" type="System">
+                            <param id="0" name="Layout">MainMenu</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="429008489621489">
+                    <conditions>
+                        <condition id="1" name="On item get" sid="671715322540108" type="LocalStorage">
+                            <param id="0" name="Key">&quot;Name&quot;</param>
+                        </condition>
+                        <condition id="12" name="Compare value" sid="944628547676611" type="LocalStorage">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="436799480219930" type="Function">
+                            <param id="0" name="Name">&quot;InitNamePrompt&quot;</param>
+                            <param id="1" name="Parameter {n}"></param>
+                        </action>
+                        <action id="-9" name="Set value" sid="200750588832566" type="System">
+                            <param id="0" name="Variable">Name</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="374604865164237">
+                    <conditions>
+                        <condition id="0" name="On function" sid="201785229771909" type="Function">
+                            <param id="0" name="Name">&quot;InitNamePrompt&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Create object" sid="684725279771775" type="System">
+                            <param id="0" name="Object to create">DefaultFont</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">180</param>
+                            <param id="3" name="Y">64</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="297734667913778" type="DefaultFont">
+                            <param id="0" name="Instance variable">Name</param>
+                            <param id="1" name="Value">&quot;Prompt&quot;</param>
+                        </action>
+                        <action id="2" name="Set scale" sid="574083231546257" type="DefaultFont">
+                            <param id="0" name="Scale">2</param>
+                        </action>
+                        <action id="0" name="Set text" sid="530212902410783" type="DefaultFont">
+                            <param id="0" name="Text">&quot;Name the fallen human.&quot;</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="596154716156462" type="DefaultFont">
+                            <param id="0" name="Width">640</param>
+                            <param id="1" name="Height">32</param>
+                        </action>
+                        <action id="3" name="Set character spacing" sid="803650052614453" type="DefaultFont">
+                            <param id="0" name="Character spacing">-2</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="798541858533012" type="System">
+                            <param id="0" name="Variable">x</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="926792385560234" type="System">
+                            <param id="0" name="Variable">y</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="472790583391551" type="System">
+                            <param id="0" name="Variable">i</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="131327952348974" type="System">
+                            <param id="0" name="Object to create">DefaultFont</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">280</param>
+                            <param id="3" name="Y">118</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="841522848845369" type="DefaultFont">
+                            <param id="0" name="Instance variable">Name</param>
+                            <param id="1" name="Value">&quot;Name&quot;</param>
+                        </action>
+                        <action id="2" name="Set scale" sid="959848705168851" type="DefaultFont">
+                            <param id="0" name="Scale">2</param>
+                        </action>
+                        <action id="0" name="Set text" sid="205419238074721" type="DefaultFont">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                        </action>
+                        <action id="-7" name="Set size" sid="377194020424310" type="DefaultFont">
+                            <param id="0" name="Width">640</param>
+                            <param id="1" name="Height">32</param>
+                        </action>
+                        <action id="3" name="Set character spacing" sid="251613073752537" type="DefaultFont">
+                            <param id="0" name="Character spacing">-2</param>
+                        </action>
+                        <action id="-3" name="Create object" sid="708209477895731" type="System">
+                            <param id="0" name="Object to create">PlayerHeart</param>
+                            <param id="1" name="Layer">0</param>
+                            <param id="2" name="X">120</param>
+                            <param id="3" name="Y">160</param>
+                        </action>
+                        <action disabled="1" id="-15" name="Set visible" sid="318282286572669" type="PlayerHeart">
+                            <param id="0" name="Visibility">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="329745911265910">
+                            <conditions>
+                                <condition id="-23" name="While" sid="651500052367512" type="System" />
+                                <condition id="-14" name="Compare variable" sid="865823265124883" type="System">
+                                    <param id="0" name="Variable">i</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">len(ALPHABET)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="814431986247149" type="System">
+                                    <param id="0" name="Object to create">DefaultFont</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">121 + x * 64</param>
+                                    <param id="3" name="Y">160 + y * 28</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="251571308348433" type="DefaultFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Value">mid(ALPHABET, i, 1)</param>
+                                </action>
+                                <action id="2" name="Set scale" sid="469587701533516" type="DefaultFont">
+                                    <param id="0" name="Scale">2</param>
+                                </action>
+                                <action id="0" name="Set text" sid="149121661554516" type="DefaultFont">
+                                    <param id="0" name="Text">Self.Name</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="561969703466553" type="DefaultFont">
+                                    <param id="0" name="Width">64</param>
+                                    <param id="1" name="Height">32</param>
+                                </action>
+                                <action id="3" name="Set character spacing" sid="957116124752413" type="DefaultFont">
+                                    <param id="0" name="Character spacing">-2</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="531839026290316" type="System">
+                                    <param id="0" name="Variable">x</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="864316414869122" type="System">
+                                    <param id="0" name="Variable">i</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="317533172485391">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="800453280479666" type="System">
+                                            <param id="0" name="Variable">x</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" sid="647592449395325" type="System">
+                                            <param id="0" name="Variable">y</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-7" name="Set size" sid="537446405065483" type="DefaultFont">
+                                            <param id="0" name="Width">64</param>
+                                            <param id="1" name="Height">64</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="507769112163096">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="663040094118763" type="System">
+                                            <param id="0" name="Variable">x</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">7</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="281698986349080" type="System">
+                                            <param id="0" name="Variable">x</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="256192600114398" type="System">
+                                            <param id="0" name="Variable">y</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="285624754913882">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="128581231913996" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="863165386417282" type="System">
+                                    <param id="0" name="Variable">y</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="808930011602314" type="System">
+                                    <param id="0" name="Variable">x</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                                <action id="-9" name="Set value" sid="284533042639186" type="System">
+                                    <param id="0" name="Variable">i</param>
+                                    <param id="1" name="Value">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="568924403191236">
+                            <conditions>
+                                <condition id="-23" name="While" sid="970316728383329" type="System" />
+                                <condition id="-14" name="Compare variable" sid="540145499273799" type="System">
+                                    <param id="0" name="Variable">i</param>
+                                    <param id="1" name="Comparison">2</param>
+                                    <param id="2" name="Value">len(ALPHABET)</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="189991501356252" type="System">
+                                    <param id="0" name="Object to create">DefaultFont</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">121 + x * 64</param>
+                                    <param id="3" name="Y">278 + y * 28</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="443525743202555" type="DefaultFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Value">lowercase(mid(ALPHABET, i, 1))</param>
+                                </action>
+                                <action id="2" name="Set scale" sid="906367534608583" type="DefaultFont">
+                                    <param id="0" name="Scale">2</param>
+                                </action>
+                                <action id="0" name="Set text" sid="672230824895066" type="DefaultFont">
+                                    <param id="0" name="Text">Self.Name</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="985695696565307" type="DefaultFont">
+                                    <param id="0" name="Width">64</param>
+                                    <param id="1" name="Height">32</param>
+                                </action>
+                                <action id="3" name="Set character spacing" sid="463903155166523" type="DefaultFont">
+                                    <param id="0" name="Character spacing">-2</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="132800726734438" type="System">
+                                    <param id="0" name="Variable">x</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                                <action id="-10" name="Add to" sid="205225188862333" type="System">
+                                    <param id="0" name="Variable">i</param>
+                                    <param id="1" name="Value">1</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="330684926491418">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="510218530165462" type="System">
+                                            <param id="0" name="Variable">x</param>
+                                            <param id="1" name="Comparison">4</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                        <condition id="-14" name="Compare variable" sid="959125908297149" type="System">
+                                            <param id="0" name="Variable">y</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-7" name="Set size" sid="221463338727778" type="DefaultFont">
+                                            <param id="0" name="Width">64</param>
+                                            <param id="1" name="Height">64</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="594518271618671">
+                                    <conditions>
+                                        <condition id="-14" name="Compare variable" sid="650969410232243" type="System">
+                                            <param id="0" name="Variable">x</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">7</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-9" name="Set value" sid="291569836053725" type="System">
+                                            <param id="0" name="Variable">x</param>
+                                            <param id="1" name="Value">0</param>
+                                        </action>
+                                        <action id="-10" name="Add to" sid="481589337581371" type="System">
+                                            <param id="0" name="Variable">y</param>
+                                            <param id="1" name="Value">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="391392810748644">
+                            <conditions>
+                                <condition id="-1" name="Every tick" sid="491796954157153" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="468427464558241" type="System">
+                                    <param id="0" name="Object to create">DefaultFont</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">440</param>
+                                    <param id="3" name="Y">406</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="418082940287552" type="DefaultFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Value">&quot;Done&quot;</param>
+                                </action>
+                                <action id="0" name="Set text" sid="705111138134339" type="DefaultFont">
+                                    <param id="0" name="Text">Self.Name</param>
+                                </action>
+                                <action id="2" name="Set scale" sid="731457251812637" type="DefaultFont">
+                                    <param id="0" name="Scale">2</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="406228286425540" type="DefaultFont">
+                                    <param id="0" name="Width">200</param>
+                                    <param id="1" name="Height">32</param>
+                                </action>
+                                <action id="3" name="Set character spacing" sid="380979947100919" type="DefaultFont">
+                                    <param id="0" name="Character spacing">-2</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="544809028897137">
+                                    <conditions>
+                                        <condition id="-32" name="Is on platform" sid="307831844067392" type="System">
+                                            <param id="0" name="Platform">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="816336093553136" type="System">
+                                            <param id="0" name="Object to create">DefaultFont</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">120</param>
+                                            <param id="3" name="Y">406</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="911543225878620" type="DefaultFont">
+                                            <param id="0" name="Instance variable">Name</param>
+                                            <param id="1" name="Value">&quot;Backspace&quot;</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="188222537609067" type="DefaultFont">
+                                            <param id="0" name="Text">Self.Name</param>
+                                        </action>
+                                        <action id="2" name="Set scale" sid="602322899266867" type="DefaultFont">
+                                            <param id="0" name="Scale">2</param>
+                                        </action>
+                                        <action id="-7" name="Set size" sid="909795974572029" type="DefaultFont">
+                                            <param id="0" name="Width">320</param>
+                                            <param id="1" name="Height">32</param>
+                                        </action>
+                                        <action id="3" name="Set character spacing" sid="359428007303260" type="DefaultFont">
+                                            <param id="0" name="Character spacing">-2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="390980831531183">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="653379975198910" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-3" name="Create object" sid="555411366774184" type="System">
+                                            <param id="0" name="Object to create">DefaultFont</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">240</param>
+                                            <param id="3" name="Y">406</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="659875614498569" type="DefaultFont">
+                                            <param id="0" name="Instance variable">Name</param>
+                                            <param id="1" name="Value">&quot;Backspace&quot;</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="808745303312450" type="DefaultFont">
+                                            <param id="0" name="Text">Self.Name</param>
+                                        </action>
+                                        <action id="2" name="Set scale" sid="426502145900996" type="DefaultFont">
+                                            <param id="0" name="Scale">2</param>
+                                        </action>
+                                        <action id="-7" name="Set size" sid="192296723285471" type="DefaultFont">
+                                            <param id="0" name="Width">200</param>
+                                            <param id="1" name="Height">32</param>
+                                        </action>
+                                        <action id="3" name="Set character spacing" sid="327981208402852" type="DefaultFont">
+                                            <param id="0" name="Character spacing">-2</param>
+                                        </action>
+                                        <action id="-3" name="Create object" sid="388760252527189" type="System">
+                                            <param id="0" name="Object to create">DefaultFont</param>
+                                            <param id="1" name="Layer">0</param>
+                                            <param id="2" name="X">120</param>
+                                            <param id="3" name="Y">406</param>
+                                        </action>
+                                        <action id="-10" name="Set value" sid="652360464593410" type="DefaultFont">
+                                            <param id="0" name="Instance variable">Name</param>
+                                            <param id="1" name="Value">&quot;Quit&quot;</param>
+                                        </action>
+                                        <action id="0" name="Set text" sid="296928187046126" type="DefaultFont">
+                                            <param id="0" name="Text">Self.Name</param>
+                                        </action>
+                                        <action id="2" name="Set scale" sid="832903951973096" type="DefaultFont">
+                                            <param id="0" name="Scale">2</param>
+                                        </action>
+                                        <action id="-7" name="Set size" sid="230758235402435" type="DefaultFont">
+                                            <param id="0" name="Width">120</param>
+                                            <param id="1" name="Height">32</param>
+                                        </action>
+                                        <action id="3" name="Set character spacing" sid="432387392253286" type="DefaultFont">
+                                            <param id="0" name="Character spacing">-2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="843341543899664">
+                    <conditions>
+                        <condition id="1" name="Is overlapping another object" sid="583543258815262" type="PlayerHeart">
+                            <param id="0" name="Object">DefaultFont</param>
+                        </condition>
+                        <condition id="-15" name="Pick nearest/furthest" sid="188260669455266" type="DefaultFont">
+                            <param id="0" name="Which">0</param>
+                            <param id="1" name="X">PlayerHeart.X-10</param>
+                            <param id="2" name="Y">PlayerHeart.Y-10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-28" name="Set effect parameter" sid="665906968577425" type="DefaultFont">
+                            <param id="0" name="Effect">&quot;Tint&quot;</param>
+                            <param id="1" name="Parameter index">0</param>
+                            <param id="2" name="Value">100</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="503787337991951" type="DefaultFont">
+                            <param id="0" name="Effect">&quot;Tint&quot;</param>
+                            <param id="1" name="Parameter index">1</param>
+                            <param id="2" name="Value">100</param>
+                        </action>
+                        <action id="-28" name="Set effect parameter" sid="507415728090880" type="DefaultFont">
+                            <param id="0" name="Effect">&quot;Tint&quot;</param>
+                            <param id="1" name="Parameter index">2</param>
+                            <param id="2" name="Value">0</param>
+                        </action>
+                        <action id="-3" name="Set position" sid="662479564979522" type="PlayerHeart">
+                            <param id="0" name="X">DefaultFont.X + 10</param>
+                            <param id="1" name="Y">DefaultFont.Y + 10</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="909920486282525">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="956438804523535" type="VPad">
+                                    <param id="0" name="Instance variable">Up</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">VPad.LastUp</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="948130601419515" type="PlayerHeart">
+                                    <param id="0" name="Comparison">4</param>
+                                    <param id="1" name="Y co-ordinate">180</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Set Y" sid="805934663910442" type="PlayerHeart">
+                                    <param id="0" name="Y">Self.Y - 32</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="616263887828651" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="435565562186137" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="117785510507306" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="972417402392055">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="977917203550701" type="VPad">
+                                    <param id="0" name="Instance variable">Down</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">VPad.LastDown</param>
+                                </condition>
+                                <condition id="-2" name="Compare Y" sid="932392976665467" type="PlayerHeart">
+                                    <param id="0" name="Comparison">2</param>
+                                    <param id="1" name="Y co-ordinate">400</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-2" name="Set Y" sid="877901625155438" type="PlayerHeart">
+                                    <param id="0" name="Y">Self.Y + DefaultFont.Height</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="288331636705807" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="693238250658177" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="614058522267057" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="171873481129966">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="255667540817512" type="VPad">
+                                    <param id="0" name="Instance variable">Left</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">VPad.LastLeft</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="532724574840900" type="PlayerHeart">
+                                    <param id="0" name="X">Self.X - DefaultFont.Width</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="174567587127198" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="644504636537063" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="647252459164627" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="522724987174217">
+                                    <conditions>
+                                        <condition id="-1" name="Compare X" sid="867111425531333" type="PlayerHeart">
+                                            <param id="0" name="Comparison">2</param>
+                                            <param id="1" name="X co-ordinate">120</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-1" name="Set X" sid="883256766092631" type="PlayerHeart">
+                                            <param id="0" name="X">120</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="201770061525869">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="302961277106010" type="VPad">
+                                    <param id="0" name="Instance variable">Right</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">VPad.LastRight</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="398881314527999" type="PlayerHeart">
+                                    <param id="0" name="X">Self.X + DefaultFont.Width</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="820894791786521" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">0</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="831335156980941" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">1</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                                <action id="-28" name="Set effect parameter" sid="166605502946660" type="DefaultFont">
+                                    <param id="0" name="Effect">&quot;Tint&quot;</param>
+                                    <param id="1" name="Parameter index">2</param>
+                                    <param id="2" name="Value">100</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="356136878641905">
+                            <conditions>
+                                <condition id="-1" name="Compare X" sid="795262542953262" type="PlayerHeart">
+                                    <param id="0" name="Comparison">4</param>
+                                    <param id="1" name="X co-ordinate">550</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-1" name="Set X" sid="293862908629833" type="PlayerHeart">
+                                    <param id="0" name="X">550</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="384182943982149">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="914694269594917" type="VPad">
+                            <param id="0" name="Instance variable">Confirm</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">VPad.LastConfirm</param>
+                        </condition>
+                        <condition id="-15" name="Pick nearest/furthest" sid="761224879453980" type="DefaultFont">
+                            <param id="0" name="Which">0</param>
+                            <param id="1" name="X">PlayerHeart.X</param>
+                            <param id="2" name="Y">PlayerHeart.Y</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="208777403373625">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="963489539071620" type="DefaultFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Quit&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                        </event-block>
+                        <event-block sid="157738390445238">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="428692783158888" type="System" />
+                                <condition id="-7" name="Compare instance variable" sid="597137605916331" type="DefaultFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Backspace&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="813450625669959" type="System">
+                                    <param id="0" name="Variable">Name</param>
+                                    <param id="1" name="Value">mid(Name, 0, len(Name)-1)</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="274517018472950">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="650826107725760" type="System" />
+                                <condition id="-7" name="Compare instance variable" sid="333596519953680" type="DefaultFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Done&quot;</param>
+                                </condition>
+                                <condition id="-14" name="Compare variable" sid="580418966668595" type="System">
+                                    <param id="0" name="Variable">Name</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">&quot;&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set item" sid="942786487630134" type="LocalStorage">
+                                    <param id="0" name="Key">&quot;Name&quot;</param>
+                                    <param id="1" name="Value">Name</param>
+                                </action>
+                                <action id="0" name="Call function" sid="122997872798764" type="Function">
+                                    <param id="0" name="Name">&quot;Sound&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;MenuSelect&quot;</param>
+                                </action>
+                                <action id="-2" name="Go to layout" sid="964994453608142" type="System">
+                                    <param id="0" name="Layout">MainMenu</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="194185246168460">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="289941165401321" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Set value" sid="390281006924463" type="System">
+                                    <param id="0" name="Variable">Name</param>
+                                    <param id="1" name="Value">mid(Name, 0, 5) &amp; DefaultFont.Name</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="637394891123454">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="842953404139786" type="VPad">
+                            <param id="0" name="Instance variable">Cancel</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">VPad.LastCancel</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="216732620286940" type="System">
+                            <param id="0" name="Variable">Name</param>
+                            <param id="1" name="Value">mid(Name, 0, len(Name)-1)</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="180736784454777">
+                    <conditions>
+                        <condition id="-11" name="For Each" sid="422252151593699" type="System">
+                            <param id="0" name="Object">DefaultFont</param>
+                        </condition>
+                        <condition id="-8" name="Compare two values" sid="404848805898619" type="System">
+                            <param id="0" name="First value">len(DefaultFont.Name)</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-3" name="Set position" sid="144711354549162" type="DefaultFont">
+                            <param id="0" name="X">floor(Self.X/2) * 2 + floor(random(2))</param>
+                            <param id="1" name="Y">floor(Self.Y/2) * 2 + floor(random(2))</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="107985532110223">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="234275001284089" type="DefaultFont">
+                            <param id="0" name="Instance variable">Name</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Name&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="716130710381855" type="DefaultFont">
+                            <param id="0" name="Text">Name</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+    </events>
+</c2eventsheet>

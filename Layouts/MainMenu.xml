@@ -5,13 +5,13 @@
     <event-sheet>MainMenu</event-sheet>
     <size>
         <width>640</width>
-        <height>1280</height>
+        <height>480</height>
     </size>
     <margins>
         <horizontal>500</horizontal>
         <vertical>500</vertical>
     </margins>
-    <unbounded-scrolling>0</unbounded-scrolling>
+    <unbounded-scrolling>1</unbounded-scrolling>
     <layers>
         <layer name="Menu" sid="1385025260711742">
             <initially-visible>1</initially-visible>

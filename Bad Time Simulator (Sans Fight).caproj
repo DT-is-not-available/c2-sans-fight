@@ -8,7 +8,7 @@
     <author-website>http://</author-website>
     <app-id>com.jcw87.badtime</app-id>
     <unique-id>3pln6vqtdnxgu</unique-id>
-    <saved-with-version>27900</saved-with-version>
+    <saved-with-version>28000</saved-with-version>
     <used-plugins>
         <plugin author="Scirra" id="AJAX" version="1">AJAX</plugin>
         <plugin author="Scirra" id="Arr" version="1">Array</plugin>
@@ -17,6 +17,7 @@
         <plugin author="Scirra" id="Dictionary" version="1">Dictionary</plugin>
         <plugin author="Scirra" id="Function" version="1">Function</plugin>
         <plugin author="Scirra" id="Keyboard" version="1">Keyboard</plugin>
+        <plugin author="Scirra" id="LocalStorage" version="1">Local storage</plugin>
         <plugin author="Scirra" id="NinePatch" version="1">9-patch</plugin>
         <plugin author="Scirra" id="Sprite" version="1">Sprite</plugin>
         <plugin author="Scirra" id="Spritefont2" version="1">Sprite font</plugin>
@@ -42,7 +43,7 @@
     </window-size>
     <pixel-rounding>1</pixel-rounding>
     <preview-effects>1</preview-effects>
-    <first-layout>MainMenu</first-layout>
+    <first-layout>NameScreen</first-layout>
     <use-loader-layout>0</use-loader-layout>
     <configuration-settings>
         <prop name="Clear background">Yes</prop>
@@ -55,7 +56,7 @@
         <prop name="Pause on unfocus">No</prop>
         <prop name="Physics engine">Box2D asm.js</prop>
         <prop name="Preload sounds">Yes</prop>
-        <prop name="Preview browser">Firefox</prop>
+        <prop name="Preview browser">Chrome</prop>
         <prop name="Sampling">Point</prop>
         <prop name="Use high-DPI display">Yes</prop>
     </configuration-settings>
@@ -77,6 +78,7 @@
                     <instance-variable name="Confirm" sid="5899272596289875" type="number" />
                     <instance-variable name="Cancel" sid="4616881591755484" type="number" />
                     <instance-variable name="Menu" sid="2168213636508799" type="number" />
+                    <instance-variable name="Quit" sid="353058693790882" type="number" />
                     <instance-variable name="LastUp" sid="1622459949020876" type="number" />
                     <instance-variable name="LastDown" sid="3653498277383987" type="number" />
                     <instance-variable name="LastLeft" sid="1053485227981488" type="number" />
@@ -84,6 +86,7 @@
                     <instance-variable name="LastConfirm" sid="3632648287625289" type="number" />
                     <instance-variable name="LastCancel" sid="1077614757894582" type="number" />
                     <instance-variable name="LastMenu" sid="9025045177578852" type="number" />
+                    <instance-variable name="LastQuit" sid="738868726430570" type="number" />
                 </instance-variables>
                 <animation-folder>
                     <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="6541956784524688" speed="5">
@@ -102,6 +105,9 @@
             </object-type>
             <object-type name="Touch" sid="833371787328053">
                 <plugin id="Touch" />
+            </object-type>
+            <object-type name="LocalStorage" sid="721079425280285">
+                <plugin id="LocalStorage" />
             </object-type>
         </object-folder>
         <object-folder name="BattleUI">
@@ -817,6 +823,17 @@
                     </animation>
                 </animation-folder>
             </object-type>
+            <object-type name="TouchESC" sid="331912570778535">
+                <plugin id="Sprite" />
+                <animation-folder>
+                    <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="438910408541414" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                    <animation framecount="1" loop="0" name="Pressed" pingpong="0" repeatcount="1" repeatto="0" sid="190811070821249" speed="5">
+                        <frame duration="1" hotspotX="0.5" hotspotY="0.5" />
+                    </animation>
+                </animation-folder>
+            </object-type>
         </object-folder>
         <object-type name="PlayerHeart" sid="5960708907117077">
             <plugin id="Sprite" />
@@ -869,6 +886,13 @@
                 <instance-variable name="Action" sid="8424291498582479" type="string" />
                 <instance-variable name="BackAction" sid="3202944525291714" type="string" />
                 <instance-variable name="Created" sid="1711039613963512" type="boolean" />
+                <instance-variable name="IsOption" sid="274970326123362" type="boolean" />
+                <instance-variable name="Value" sid="177483007415703" type="number" />
+                <instance-variable name="Step" sid="835730499752013" type="number" />
+                <instance-variable name="Min" sid="699040896145597" type="number" />
+                <instance-variable name="Max" sid="930712550904509" type="number" />
+                <instance-variable name="Selected" sid="320642672209779" type="boolean" />
+                <instance-variable name="Setter" sid="115103358103266" type="string" />
             </instance-variables>
             <animation-folder>
                 <animation framecount="1" loop="0" name="Default" pingpong="0" repeatcount="1" repeatto="0" sid="155770205370032" speed="5">
@@ -995,6 +1019,7 @@
                 <instance-variable name="CurrentChar" sid="8429195992300595" type="number" />
                 <instance-variable name="T" sid="9067313364631326" type="number" />
                 <instance-variable name="Timeout" sid="4487571781562274" type="number" />
+                <instance-variable name="Speed" sid="584178294912344" type="number" />
             </instance-variables>
             <effects>
                 <effect-type name="Tint">
@@ -1059,6 +1084,7 @@
             <members>
                 <member>TouchA</member>
                 <member>TouchB</member>
+                <member>TouchESC</member>
             </members>
             <instance-variables>
                 <instance-variable name="TouchID" sid="636958093485166" type="number" />
@@ -1070,6 +1096,7 @@
         <layout>BattleScreen.xml</layout>
         <layout>System.xml</layout>
         <layout>MainMenu.xml</layout>
+        <layout>NameScreen.xml</layout>
     </layout-folder>
     <event-folder>
         <event-sheet>Battle.xml</event-sheet>
@@ -1082,6 +1109,8 @@
         <event-sheet>AttackLoader.xml</event-sheet>
         <event-sheet>MainMenu.xml</event-sheet>
         <event-sheet>Menus.xml</event-sheet>
+        <event-sheet>NameScreen.xml</event-sheet>
+        <event-sheet>Common.xml</event-sheet>
     </event-folder>
     <global-instances>
         <global-instance type="Gamepad" uid="8">
@@ -1112,6 +1141,7 @@
                 <use-mouse-input>Yes</use-mouse-input>
             </properties>
         </global-instance>
+        <global-instance type="LocalStorage" uid="67" />
     </global-instances>
     <sounds-folder>
         <file name="Ding.ogg" />
@@ -1147,7 +1177,6 @@
         <file name="sans_intro.csv" />
         <file name="sans_bonegap1.csv" />
         <file name="sans_bonegap2.csv" />
-        <file name="sans_bluebone.csv" />
         <file name="sans_platforms1.csv" />
         <file name="sans_platforms2.csv" />
         <file name="sans_platforms3.csv" />
@@ -1168,5 +1197,6 @@
         <file name="sans_bonestab3.csv" />
         <file name="sans_multi3.csv" />
         <file name="sans_final.csv" />
+        <file name="sans_bluebone.csv" />
     </files-folder>
 </c2project>

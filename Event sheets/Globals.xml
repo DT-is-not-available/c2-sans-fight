@@ -16,7 +16,10 @@
         <variable constant="0" name="Name" sid="8522084662131715" static="0" type="text">Chara</variable>
         <variable constant="0" name="HP" sid="4067313995094888" static="0" type="number">92</variable>
         <variable constant="0" name="MaxHP" sid="2742940924955148" static="0" type="number">92</variable>
+        <variable constant="0" name="LV" sid="301278590925045" static="0" type="number">19</variable>
         <variable constant="0" name="KR" sid="2189987320058474" static="0" type="number">0</variable>
         <variable constant="0" name="KR_T" sid="8948293770944489" static="0" type="number">0</variable>
+        <variable constant="0" name="Music" sid="875691520051042" static="0" type="number">100</variable>
+        <variable constant="0" name="SoundEffects" sid="332926127951179" static="0" type="number">100</variable>
     </events>
 </c2eventsheet>

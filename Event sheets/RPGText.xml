@@ -12,7 +12,7 @@
                     <actions>
                         <action id="-11" name="Add to" sid="9960523751992423" type="RPGText">
                             <param id="0" name="Instance variable">T</param>
-                            <param id="1" name="Value">dt</param>
+                            <param id="1" name="Value">dt*Self.Speed</param>
                         </action>
                     </actions>
                 </event-block>
@@ -52,12 +52,9 @@
                                 </condition>
                             </conditions>
                             <actions>
-                                <action id="7" name="Play (by name)" sid="7355169452177231" type="Audio">
-                                    <param id="0" name="Folder">0</param>
-                                    <param id="1" name="Audio file name">RPGText.Voice</param>
-                                    <param id="3" name="Loop">0</param>
-                                    <param id="4" name="Volume">0</param>
-                                    <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                                <action id="0" name="Call function" sid="257571213837897" type="Function">
+                                    <param id="0" name="Name">&quot;Sound&quot;</param>
+                                    <param id="1" name="Parameter {n}">RPGText.Voice</param>
                                 </action>
                             </actions>
                         </event-block>

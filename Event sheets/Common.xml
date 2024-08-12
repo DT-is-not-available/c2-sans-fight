@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Common</name>
+    <events>
+        <event-block sid="923178867349133">
+            <conditions>
+                <condition id="0" name="On function" sid="353202833339827" type="Function">
+                    <param id="0" name="Name">&quot;Sound&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <variable constant="0" name="SoundTag" sid="956024221367272" static="0" type="text"></variable>
+                <event-block sid="134496778924958">
+                    <conditions>
+                        <condition id="1" name="Compare parameter" sid="254997047595281" type="Function">
+                            <param id="0" name="Index">2</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">&quot;&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="600549526308875" type="System">
+                            <param id="0" name="Variable">SoundTag</param>
+                            <param id="1" name="Value">&quot;Sound&quot;&amp;Function.Param(2)</param>
+                        </action>
+                        <action id="6" name="Stop" sid="661641610651435" type="Audio">
+                            <param id="0" name="Tag">SoundTag</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="702658297303999">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="429882891818248" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="7" name="Play (by name)" sid="806452612497824" type="Audio">
+                            <param id="0" name="Folder">0</param>
+                            <param id="1" name="Audio file name">Function.Param(0)</param>
+                            <param id="3" name="Loop">0</param>
+                            <param id="4" name="Volume">20*log10(SoundEffects/100)</param>
+                            <param id="2" name="Tag (optional)">SoundTag</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="174529902548547">
+                    <conditions>
+                        <condition id="1" name="Compare parameter" sid="521629779740193" type="Function">
+                            <param id="0" name="Index">1</param>
+                            <param id="1" name="Comparison">1</param>
+                            <param id="2" name="Value">&quot;&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set playback rate" sid="959739379610761" type="Audio">
+                            <param id="0" name="Tag">SoundTag</param>
+                            <param id="1" name="Playback rate">float(Function.Param(1))</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="549498840673607">
+            <conditions>
+                <condition id="0" name="On function" sid="535472942385891" type="Function">
+                    <param id="0" name="Name">&quot;Music&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="7" name="Play (by name)" sid="152035968441472" type="Audio">
+                    <param id="0" name="Folder">1</param>
+                    <param id="1" name="Audio file name">Function.Param(0)</param>
+                    <param id="3" name="Loop">1</param>
+                    <param id="4" name="Volume">20*log10(Music/100)</param>
+                    <param id="2" name="Tag (optional)">&quot;Music&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <comment>Load values from LocalStorage. Only runs if it&apos;s the first time a layout has ever been started.</comment>
+        <comment>Also defines c2_bindFunction, which helps in making the Javascript API cleaner to use.</comment>
+        <event-block sid="302233523188064">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="694825802346598" type="System" />
+                <condition id="-8" name="Compare two values" sid="513583545448018" type="System">
+                    <param id="0" name="First value">tickcount</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Second value">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="4" name="Get all key names" sid="244316400729704" type="LocalStorage" />
+                <action id="17" name="Execute Javascript" sid="537309843624517" type="Browser">
+                    <param id="0" name="Javascript">&quot;&#x0D;&#x0A;window[&apos;c2_bindFunction&apos;] = function(name, args=[&apos;...args&apos;]) {&#x0D;&#x0A;    return Function(args, `return c2_callFunction(${JSON.stringify(name)}, [${args.join(&apos;, &apos;)}])`)&#x0D;&#x0A;}&#x0D;&#x0A;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="398932891493847">
+            <conditions>
+                <condition id="4" name="On all key names loaded" sid="887030309199524" type="LocalStorage" />
+                <condition id="-12" name="Repeat" sid="661911904476215" type="System">
+                    <param id="0" name="Count">LocalStorage.KeyCount</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="1" name="Get item" sid="782682277483826" type="LocalStorage">
+                    <param id="0" name="Key">LocalStorage.KeyAt(loopindex)</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="329170294861926">
+            <conditions>
+                <condition id="1" name="On item get" sid="295380285130712" type="LocalStorage">
+                    <param id="0" name="Key">&quot;Name&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="177688283290998" type="System">
+                    <param id="0" name="Variable">Name</param>
+                    <param id="1" name="Value">LocalStorage.ItemValue</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="806419502753597">
+            <conditions>
+                <condition id="1" name="On item get" sid="978175801166028" type="LocalStorage">
+                    <param id="0" name="Key">&quot;Music&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="917436629342010" type="System">
+                    <param id="0" name="Variable">Music</param>
+                    <param id="1" name="Value">LocalStorage.ItemValue</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="616266731573018">
+            <conditions>
+                <condition id="1" name="On item get" sid="400075306657125" type="LocalStorage">
+                    <param id="0" name="Key">&quot;SoundEffects&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="968449711102444" type="System">
+                    <param id="0" name="Variable">SoundEffects</param>
+                    <param id="1" name="Value">LocalStorage.ItemValue</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="383089353262229">
+            <conditions>
+                <condition id="1" name="On item get" sid="386029161667553" type="LocalStorage">
+                    <param id="0" name="Key">&quot;LV&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="816022860698694" type="System">
+                    <param id="0" name="Variable">LV</param>
+                    <param id="1" name="Value">LocalStorage.ItemValue</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

@@ -3,6 +3,7 @@
     <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
     <name>Battle</name>
     <events>
+        <include>Common</include>
         <include>InputManagement</include>
         <include>Fonts</include>
         <include>Items</include>
@@ -84,8 +85,104 @@
                     <param id="0" name="Animation">&quot;ClosedEyes&quot;</param>
                     <param id="1" name="From">1</param>
                 </action>
+                <action id="-9" name="Set value" sid="143801822805873" type="System">
+                    <param id="0" name="Variable">MaxHP</param>
+                    <param id="1" name="Value">LV*4+16</param>
+                </action>
+                <action id="-3" name="Create object" sid="732295963863684" type="System">
+                    <param id="0" name="Object to create">BattleFont</param>
+                    <param id="1" name="Layer">&quot;Background&quot;</param>
+                    <param id="2" name="X">0</param>
+                    <param id="3" name="Y">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="900101277739730" type="BattleFont">
+                    <param id="0" name="Instance variable">Name</param>
+                    <param id="1" name="Value">&quot;QuittingMessage&quot;</param>
+                </action>
+                <action id="-5" name="Set width" sid="354268420941808" type="BattleFont">
+                    <param id="0" name="Width">640</param>
+                </action>
+                <action id="-6" name="Set height" sid="748539054145404" type="BattleFont">
+                    <param id="0" name="Height">32</param>
+                </action>
+                <action id="0" name="Set text" sid="569752094441651" type="BattleFont">
+                    <param id="0" name="Text">&quot;&quot;</param>
+                </action>
+                <action id="-10" name="Set value" sid="176642083646324" type="BattleFont">
+                    <param id="0" name="Instance variable">Speed</param>
+                    <param id="1" name="Value">0.1</param>
+                </action>
             </actions>
             <sub-events>
+                <event-block sid="604254485784768">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="691889833915916" type="System">
+                            <param id="0" name="Variable">LV</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">20</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="850387054213689" type="System">
+                            <param id="0" name="Variable">MaxHP</param>
+                            <param id="1" name="Value">99</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="656829213593033">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="835436428179510" type="System">
+                            <param id="0" name="Variable">LV</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="450751314648029" type="System">
+                            <param id="0" name="Variable">MaxHP</param>
+                            <param id="1" name="Value">1</param>
+                        </action>
+                        <action id="-9" name="Destroy" sid="667656830846387" type="HPBackground" />
+                        <action id="-9" name="Destroy" sid="817035530184217" type="HPBar" />
+                        <action id="-9" name="Destroy" sid="730205092505599" type="KRBar" />
+                        <action id="-9" name="Destroy" sid="629224923646549" type="HP" />
+                        <action id="-9" name="Destroy" sid="964641421878907" type="KR" />
+                        <action id="0" name="Clear" sid="182391697280935" type="PlayerItems" />
+                        <action id="1" name="Set size" sid="428728745127918" type="PlayerItems">
+                            <param id="0" name="Width">0</param>
+                            <param id="1" name="Height">1</param>
+                            <param id="2" name="Depth">1</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="371636189917287">
+                            <conditions>
+                                <condition id="-19" name="Pick all" sid="869000889107774" type="System">
+                                    <param id="0" name="Object">BattleFont</param>
+                                </condition>
+                                <condition id="-7" name="Compare instance variable" sid="214742535760050" type="BattleFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;HP&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-9" name="Destroy" sid="654350081403368" type="BattleFont" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="393148705329726">
+                    <conditions>
+                        <condition id="-1" name="Every tick" sid="697728624467306" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="373527558710104" type="System">
+                            <param id="0" name="Variable">HP</param>
+                            <param id="1" name="Value">MaxHP</param>
+                        </action>
+                    </actions>
+                </event-block>
                 <event-block sid="5660586456921061">
                     <conditions>
                         <condition id="-7" name="Compare instance variable" sid="7073583585924294" type="RPGText">
@@ -96,9 +193,25 @@
                     </conditions>
                     <actions>
                         <action id="0" name="Set text" sid="9190566972510164" type="RPGText">
-                            <param id="0" name="Text">uppercase(Name) &amp; &quot;   LV 19&quot;</param>
+                            <param id="0" name="Text">uppercase(Name) &amp; &quot;   LV &quot;&amp;str(LV)</param>
                         </action>
                     </actions>
+                    <sub-events>
+                        <event-block sid="793458256367029">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="741032950299119" type="System">
+                                    <param id="0" name="Variable">LV</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="487862237708789" type="RPGText">
+                                    <param id="0" name="Text">uppercase(Name) &amp; &quot;   NO HIT&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
                 </event-block>
                 <event-block sid="6375254474144596">
                     <conditions>
@@ -123,11 +236,9 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Play" sid="4080759880781125" type="Audio">
-                            <param id="0" name="Audio file">mus_zz_megalovania</param>
-                            <param id="2" name="Loop">1</param>
-                            <param id="3" name="Volume">0</param>
-                            <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
+                        <action id="0" name="Call function" sid="157026873333938" type="Function">
+                            <param id="0" name="Name">&quot;Music&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;mus_zz_megalovania&quot;</param>
                         </action>
                     </actions>
                 </event-block>
@@ -192,7 +303,82 @@
                             <param id="0" name="Height">32</param>
                         </action>
                         <action id="0" name="Set text" sid="8939946990053354" type="BattleFont">
-                            <param id="0" name="Text">&quot;PRESS &apos;X&apos; TO QUIT&quot;</param>
+                            <param id="0" name="Text">&quot;PRESS &apos;ESC&apos; TO QUIT&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="820168467781354">
+            <conditions>
+                <condition id="-7" name="Compare instance variable" sid="830873009599955" type="BattleFont">
+                    <param id="0" name="Instance variable">Name</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;QuittingMessage&quot;</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="582803333967344">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="765012736126772" type="VPad">
+                            <param id="0" name="Instance variable">Quit</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="400681519972771" type="BattleFont">
+                            <param id="0" name="Instance variable">FullText</param>
+                            <param id="1" name="Value">&quot;QUITTING....&quot;</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="345853422051367" type="BattleFont">
+                            <param id="0" name="Opacity">Self.Opacity + 2</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="568021114278486">
+                            <conditions>
+                                <condition id="0" name="Compare text" sid="642102851468786" type="BattleFont">
+                                    <param id="0" name="Text to compare">Self.FullText</param>
+                                    <param id="1" name="Case sensitivity">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="439729554393298" type="Function">
+                                    <param id="0" name="Name">&quot;TLStop&quot;</param>
+                                    <param id="1" name="Parameter {n}"></param>
+                                </action>
+                                <action id="33" name="Stop all" sid="209349256393313" type="Audio" />
+                                <action id="-2" name="Go to layout" sid="981867379167532" type="System">
+                                    <param id="0" name="Layout">MainMenu</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="443637133886848">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="667339649210726" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="132800813194688" type="BattleFont">
+                            <param id="0" name="Instance variable">FullText</param>
+                            <param id="1" name="Value">&quot;&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="534952957391281" type="BattleFont">
+                            <param id="0" name="Text">&quot;QUITTING&quot;</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="303315665410462" type="BattleFont">
+                            <param id="0" name="Instance variable">CurrentChar</param>
+                            <param id="1" name="Value">8</param>
+                        </action>
+                        <action id="-10" name="Set value" sid="865594231322357" type="BattleFont">
+                            <param id="0" name="Instance variable">T</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-16" name="Set opacity" sid="807041710159600" type="BattleFont">
+                            <param id="0" name="Opacity">0</param>
                         </action>
                     </actions>
                 </event-block>
@@ -352,11 +538,9 @@
                                             <param id="0" name="Name">&quot;EndAttack&quot;</param>
                                             <param id="1" name="Parameter {n}"></param>
                                         </action>
-                                        <action id="0" name="Play" sid="687530192848918" type="Audio">
-                                            <param id="0" name="Audio file">mus_zz_megalovania</param>
-                                            <param id="2" name="Loop">1</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
+                                        <action id="0" name="Call function" sid="130903995465749" type="Function">
+                                            <param id="0" name="Name">&quot;Music&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;mus_zz_megalovania&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1270,11 +1454,9 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Play" sid="3571287415179704" type="Audio">
-                                            <param id="0" name="Audio file">mus_zz_megalovania</param>
-                                            <param id="2" name="Loop">1</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;Music&quot;</param>
+                                        <action id="0" name="Call function" sid="682171675922925" type="Function">
+                                            <param id="0" name="Name">&quot;Music&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;mus_zz_megalovania&quot;</param>
                                         </action>
                                     </actions>
                                 </event-block>
@@ -1496,55 +1678,6 @@
                 </action>
             </actions>
         </event-block>
-        <event-block sid="6096733224286633">
-            <conditions>
-                <condition id="0" name="On function" sid="3153370142839506" type="Function">
-                    <param id="0" name="Name">&quot;Sound&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="7" name="Play (by name)" sid="3990447337869471" type="Audio">
-                    <param id="0" name="Folder">0</param>
-                    <param id="1" name="Audio file name">Function.Param(0)</param>
-                    <param id="3" name="Loop">0</param>
-                    <param id="4" name="Volume">0</param>
-                    <param id="2" name="Tag (optional)">&quot;&quot;</param>
-                </action>
-            </actions>
-            <sub-events>
-                <event-block sid="3932998756502551">
-                    <conditions>
-                        <condition id="1" name="Compare parameter" sid="2106028122650942" type="Function">
-                            <param id="0" name="Index">1</param>
-                            <param id="1" name="Comparison">1</param>
-                            <param id="2" name="Value">&quot;&quot;</param>
-                        </condition>
-                    </conditions>
-                    <actions>
-                        <action id="5" name="Set playback rate" sid="3971380284517386" type="Audio">
-                            <param id="0" name="Tag">&quot;&quot;</param>
-                            <param id="1" name="Playback rate">float(Function.Param(1))</param>
-                        </action>
-                    </actions>
-                </event-block>
-            </sub-events>
-        </event-block>
-        <event-block sid="5100353164401107">
-            <conditions>
-                <condition id="0" name="On function" sid="2254145649323064" type="Function">
-                    <param id="0" name="Name">&quot;Music&quot;</param>
-                </condition>
-            </conditions>
-            <actions>
-                <action id="7" name="Play (by name)" sid="2486037694762911" type="Audio">
-                    <param id="0" name="Folder">1</param>
-                    <param id="1" name="Audio file name">Function.Param(0)</param>
-                    <param id="3" name="Loop">1</param>
-                    <param id="4" name="Volume">0</param>
-                    <param id="2" name="Tag (optional)">&quot;Music&quot;</param>
-                </action>
-            </actions>
-        </event-block>
         <event-block sid="7627015178653555">
             <conditions>
                 <condition id="0" name="On function" sid="5634795570105372" type="Function">
@@ -1609,7 +1742,7 @@
                     <param id="2" name="Value">MODE_SINGLE</param>
                 </condition>
                 <condition id="-7" name="Compare instance variable" sid="218244971315972" type="VPad">
-                    <param id="0" name="Instance variable">Cancel</param>
+                    <param id="0" name="Instance variable">Quit</param>
                     <param id="1" name="Comparison">4</param>
                     <param id="2" name="Value">VPad.LastCancel</param>
                 </condition>
@@ -2081,11 +2214,9 @@
                                 <action id="-2" name="Set Y" sid="7182343775218483" type="Strike">
                                     <param id="0" name="Y">SansLegs.Y - 96</param>
                                 </action>
-                                <action id="0" name="Play" sid="5050089995289068" type="Audio">
-                                    <param id="0" name="Audio file">PlayerFight</param>
-                                    <param id="2" name="Loop">0</param>
-                                    <param id="3" name="Volume">0</param>
-                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                <action id="0" name="Call function" sid="257299576948730" type="Function">
+                                    <param id="0" name="Name">&quot;Sound&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;PlayerFight&quot;</param>
                                 </action>
                                 <action id="-10" name="Set value" sid="4688554665763953" type="SansLegs">
                                     <param id="0" name="Instance variable">DodgeState</param>
@@ -2471,11 +2602,9 @@
                                             <param id="0" name="Variable">HP</param>
                                             <param id="1" name="Value">ItemDB.At(ItemID, 1)</param>
                                         </action>
-                                        <action id="0" name="Play" sid="2915182819935039" type="Audio">
-                                            <param id="0" name="Audio file">PlayerHeal</param>
-                                            <param id="2" name="Loop">0</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        <action id="0" name="Call function" sid="646872193750661" type="Function">
+                                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;PlayerHeal&quot;</param>
                                         </action>
                                         <action id="-3" name="Create object" sid="6714699484739134" type="System">
                                             <param id="0" name="Object to create">DefaultFont</param>
@@ -3463,17 +3592,13 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Play" sid="275756947417676" type="Audio">
-                                            <param id="0" name="Audio file">PlayerDamaged</param>
-                                            <param id="2" name="Loop">0</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        <action id="0" name="Call function" sid="933980619948876" type="Function">
+                                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;PlayerDamaged&quot;</param>
                                         </action>
-                                        <action id="0" name="Play" sid="7693770790135112" type="Audio">
-                                            <param id="0" name="Audio file">Slam</param>
-                                            <param id="2" name="Loop">0</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        <action id="0" name="Call function" sid="715999688543901" type="Function">
+                                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;Slam&quot;</param>
                                         </action>
                                         <action id="0" name="Call function" sid="130122766339402" type="Function">
                                             <param id="0" name="Name">&quot;SansShake&quot;</param>
@@ -3574,17 +3699,13 @@
                                         </condition>
                                     </conditions>
                                     <actions>
-                                        <action id="0" name="Play" sid="928541963036935" type="Audio">
-                                            <param id="0" name="Audio file">PlayerDamaged</param>
-                                            <param id="2" name="Loop">0</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        <action id="0" name="Call function" sid="375600440153076" type="Function">
+                                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;PlayerDamaged&quot;</param>
                                         </action>
-                                        <action id="0" name="Play" sid="8703354903927214" type="Audio">
-                                            <param id="0" name="Audio file">Slam</param>
-                                            <param id="2" name="Loop">0</param>
-                                            <param id="3" name="Volume">0</param>
-                                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                        <action id="0" name="Call function" sid="722137664913016" type="Function">
+                                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                                            <param id="1" name="Parameter {n}">&quot;Slam&quot;</param>
                                         </action>
                                         <action id="0" name="Call function" sid="942345758924194" type="Function">
                                             <param id="0" name="Name">&quot;SansShake&quot;</param>
@@ -4994,11 +5115,9 @@
                             <param id="0" name="Instance variable">StayTime</param>
                             <param id="1" name="Value">float(Function.Param(3))</param>
                         </action>
-                        <action id="0" name="Play" sid="2724812214603569" type="Audio">
-                            <param id="0" name="Audio file">Warning</param>
-                            <param id="2" name="Loop">0</param>
-                            <param id="3" name="Volume">0</param>
-                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        <action id="0" name="Call function" sid="448411904736578" type="Function">
+                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Warning&quot;</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -5100,11 +5219,9 @@
                         </condition>
                     </conditions>
                     <actions>
-                        <action id="0" name="Play" sid="8766038470293481" type="Audio">
-                            <param id="0" name="Audio file">BoneStab</param>
-                            <param id="2" name="Loop">0</param>
-                            <param id="3" name="Volume">0</param>
-                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        <action id="0" name="Call function" sid="594525788843936" type="Function">
+                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;BoneStab&quot;</param>
                         </action>
                         <action id="-9" name="Destroy" sid="5051201238736224" type="BoneStabWarn" />
                     </actions>
@@ -5464,18 +5581,9 @@
                         <action id="-8" name="Set angle" sid="3264361790729957" type="GasterBlaster">
                             <param id="0" name="Angle">GasterBlaster.Ang</param>
                         </action>
-                        <action id="6" name="Stop" sid="4465756482301942" type="Audio">
-                            <param id="0" name="Tag">&quot;GasterBlaster&quot;</param>
-                        </action>
-                        <action id="0" name="Play" sid="9831362822163861" type="Audio">
-                            <param id="0" name="Audio file">GasterBlaster</param>
-                            <param id="2" name="Loop">0</param>
-                            <param id="3" name="Volume">0</param>
-                            <param id="1" name="Tag (optional)">&quot;GasterBlaster&quot;</param>
-                        </action>
-                        <action id="5" name="Set playback rate" sid="6330413995695288" type="Audio">
-                            <param id="0" name="Tag">&quot;&quot;</param>
-                            <param id="1" name="Playback rate">1.2</param>
+                        <action id="0" name="Call function" sid="950089846490898" type="Function">
+                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;GasterBlaster&quot;{###}1.2{###}&quot;GasterBlaster&quot;</param>
                         </action>
                         <action id="-29" name="Move to object" sid="194140213150549" type="GasterBlast1">
                             <param id="0" name="Where">0</param>
@@ -5847,31 +5955,13 @@
                                     <param id="0" name="Instance variable">Karma</param>
                                     <param id="1" name="Value">10</param>
                                 </action>
-                                <action id="6" name="Stop" sid="6080608424724769" type="Audio">
-                                    <param id="0" name="Tag">&quot;GasterBlast&quot;</param>
+                                <action id="0" name="Call function" sid="911049276953979" type="Function">
+                                    <param id="0" name="Name">&quot;Sound&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;GasterBlast&quot;{###}1.2{###}&quot;GasterBlast&quot;</param>
                                 </action>
-                                <action id="6" name="Stop" sid="862009595167511" type="Audio">
-                                    <param id="0" name="Tag">&quot;GasterBlast2&quot;</param>
-                                </action>
-                                <action id="0" name="Play" sid="3009617997729409" type="Audio">
-                                    <param id="0" name="Audio file">GasterBlast</param>
-                                    <param id="2" name="Loop">0</param>
-                                    <param id="3" name="Volume">0</param>
-                                    <param id="1" name="Tag (optional)">&quot;GasterBlast&quot;</param>
-                                </action>
-                                <action id="5" name="Set playback rate" sid="6759438315639086" type="Audio">
-                                    <param id="0" name="Tag">&quot;&quot;</param>
-                                    <param id="1" name="Playback rate">1.2</param>
-                                </action>
-                                <action id="0" name="Play" sid="9817974725864405" type="Audio">
-                                    <param id="0" name="Audio file">GasterBlast2</param>
-                                    <param id="2" name="Loop">0</param>
-                                    <param id="3" name="Volume">0</param>
-                                    <param id="1" name="Tag (optional)">&quot;GasterBlast2&quot;</param>
-                                </action>
-                                <action id="5" name="Set playback rate" sid="2703179175507274" type="Audio">
-                                    <param id="0" name="Tag">&quot;&quot;</param>
-                                    <param id="1" name="Playback rate">1.2</param>
+                                <action id="0" name="Call function" sid="430406822337450" type="Function">
+                                    <param id="0" name="Name">&quot;Sound&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;GasterBlast2&quot;{###}1.2{###}&quot;GasterBlast2&quot;</param>
                                 </action>
                             </actions>
                             <sub-events>
@@ -7791,11 +7881,9 @@
                             <param id="0" name="Variable">KR</param>
                             <param id="1" name="Value">Function.Param(1)</param>
                         </action>
-                        <action id="0" name="Play" sid="2718447344361586" type="Audio">
-                            <param id="0" name="Audio file">PlayerDamaged</param>
-                            <param id="2" name="Loop">0</param>
-                            <param id="3" name="Volume">0</param>
-                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        <action id="0" name="Call function" sid="712238601103762" type="Function">
+                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;PlayerDamaged&quot;</param>
                         </action>
                     </actions>
                 </event-block>
@@ -8390,11 +8478,9 @@
                             <param id="0" name="Animation">&quot;Split&quot;</param>
                             <param id="1" name="From">1</param>
                         </action>
-                        <action id="0" name="Play" sid="2075669190576832" type="Audio">
-                            <param id="0" name="Audio file">HeartSplit</param>
-                            <param id="2" name="Loop">0</param>
-                            <param id="3" name="Volume">0</param>
-                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        <action id="0" name="Call function" sid="668865494428498" type="Function">
+                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;HeartSplit&quot;</param>
                         </action>
                         <action id="-16" name="Wait" sid="796514820377959" type="System">
                             <param id="0" name="Seconds">40/30</param>
@@ -8402,11 +8488,9 @@
                         <action id="-15" name="Set visible" sid="6017268762912521" type="PlayerHeart">
                             <param id="0" name="Visibility">0</param>
                         </action>
-                        <action id="0" name="Play" sid="643194526854293" type="Audio">
-                            <param id="0" name="Audio file">HeartShatter</param>
-                            <param id="2" name="Loop">0</param>
-                            <param id="3" name="Volume">0</param>
-                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        <action id="0" name="Call function" sid="348646938251170" type="Function">
+                            <param id="0" name="Name">&quot;Sound&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;HeartShatter&quot;</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -8501,6 +8585,9 @@
                         <action id="-1" name="Set X" sid="1913854097773742" type="KRBar">
                             <param id="0" name="X">HPBackground.X + HPBackground.Width * (HP-KR) / MaxHP</param>
                         </action>
+                        <action id="-1" name="Set X" sid="748783437051301" type="KR">
+                            <param id="0" name="X">HPBackground.X + HPBackground.Width + 35</param>
+                        </action>
                     </actions>
                 </event-block>
                 <event-block sid="1588929814642503">
@@ -8514,6 +8601,9 @@
                     <actions>
                         <action id="0" name="Set text" sid="1551462691539896" type="BattleFont">
                             <param id="0" name="Text">zeropad(HP, 2) &amp; &quot; / &quot; &amp; MaxHP</param>
+                        </action>
+                        <action id="-1" name="Set X" sid="275596828783909" type="BattleFont">
+                            <param id="0" name="X">KR.X + 16</param>
                         </action>
                     </actions>
                     <sub-events>
