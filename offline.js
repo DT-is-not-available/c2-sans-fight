@@ -1,5 +1,5 @@
 ﻿{
-	"version": 1690655841,
+	"version": 1723482140,
 	"fileList": [
 		"data.js",
 		"c2runtime.js",
@@ -49,6 +49,8 @@
 		"images/touchb-sheet0.png",
 		"images/touchb-sheet1.png",
 		"images/touchdpad-sheet0.png",
+		"images/touchesc-sheet0.png",
+		"images/touchesc-sheet1.png",
 		"images/playerheart-sheet0.png",
 		"images/playerheart-sheet1.png",
 		"images/menuitem-sheet0.png",
@@ -83,7 +85,6 @@
 		"sans_intro.csv",
 		"sans_bonegap1.csv",
 		"sans_bonegap2.csv",
-		"sans_bluebone.csv",
 		"sans_platforms1.csv",
 		"sans_platforms2.csv",
 		"sans_platforms3.csv",
@@ -103,6 +104,7 @@
 		"sans_randomblaster2.csv",
 		"sans_bonestab3.csv",
 		"sans_multi3.csv",
-		"sans_final.csv"
+		"sans_final.csv",
+		"sans_bluebone.csv"
 	]
 }
