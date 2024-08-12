@@ -8432,6 +8432,11 @@
                             <param id="1" name="Comparison">5</param>
                             <param id="2" name="Value">0</param>
                         </condition>
+                        <condition id="-14" inverted="1" name="Compare variable" sid="230885253287520" type="System">
+                            <param id="0" name="Variable">SimulatorMode</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">MODE_PRACTICE</param>
+                        </condition>
                     </conditions>
                     <actions>
                         <action id="-10" name="Set value" sid="3459561075160849" type="PlayerHeart">
@@ -9004,12 +9009,17 @@
                                         </action>
                                     </actions>
                                 </event-block>
-                                <event-block sid="724967201428597">
+                                <event-block any="1" sid="724967201428597">
                                     <conditions>
                                         <condition id="-8" name="Compare two values" sid="908913099483133" type="System">
                                             <param id="0" name="First value">HP - KR</param>
                                             <param id="1" name="Comparison">2</param>
-                                            <param id="2" name="Second value">PracticeTargetTest</param>
+                                            <param id="2" name="Second value">PracticeTargetTest/92 * MaxHP</param>
+                                        </condition>
+                                        <condition id="-8" name="Compare two values" sid="849485281256210" type="System">
+                                            <param id="0" name="First value">HP</param>
+                                            <param id="1" name="Comparison">3</param>
+                                            <param id="2" name="Second value">0</param>
                                         </condition>
                                     </conditions>
                                     <actions />

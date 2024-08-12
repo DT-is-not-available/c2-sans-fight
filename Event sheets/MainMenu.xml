@@ -242,7 +242,7 @@
                         </action>
                         <action id="0" name="Call function" sid="924937973044293" type="Function">
                             <param id="0" name="Name">&quot;CreateMenuItem&quot;</param>
-                            <param id="1" name="Parameter {n}">0{###}192{###}208{###}4{###}&quot;Change name&quot;{###}&quot;MenuSettingsChangeName&quot;</param>
+                            <param id="1" name="Parameter {n}">0{###}192{###}208{###}4{###}&quot;Name: &quot;&amp;Name{###}&quot;MenuSettingsChangeName&quot;</param>
                         </action>
                         <action id="0" name="Call function" sid="611607633408519" type="Function">
                             <param id="0" name="Name">&quot;CreateMenuItem&quot;</param>

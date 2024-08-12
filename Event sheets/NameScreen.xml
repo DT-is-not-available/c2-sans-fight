@@ -105,10 +105,11 @@
         </event-block>
         <event-group description="" sid="377118402799701" title="NameScreen">
             <sub-events>
-                <variable constant="1" name="alphabet" sid="638829178409564" static="0" type="text">ABCDEFGHIJKLMNOPQRSTUVWXYZ</variable>
-                <variable constant="0" name="i" sid="985611570609710" static="0" type="number">0</variable>
-                <variable constant="0" name="x" sid="761796196549037" static="0" type="number">0</variable>
-                <variable constant="0" name="y" sid="327260604099053" static="0" type="number">0</variable>
+                <variable constant="1" name="ALPHABET" sid="638829178409564" static="1" type="text">ABCDEFGHIJKLMNOPQRSTUVWXYZ</variable>
+                <variable constant="0" name="i" sid="985611570609710" static="1" type="number">0</variable>
+                <variable constant="0" name="x" sid="761796196549037" static="1" type="number">0</variable>
+                <variable constant="0" name="y" sid="327260604099053" static="1" type="number">0</variable>
+                <variable constant="0" name="oldname" sid="271151770775192" static="1" type="text"></variable>
                 <event-block sid="766801946324573">
                     <conditions>
                         <condition id="-2" name="On start of layout" sid="137522997628294" type="System" />
@@ -256,6 +257,10 @@
                         </action>
                         <action disabled="1" id="-15" name="Set visible" sid="318282286572669" type="PlayerHeart">
                             <param id="0" name="Visibility">1</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="701905487219817" type="System">
+                            <param id="0" name="Variable">oldname</param>
+                            <param id="1" name="Value">Name</param>
                         </action>
                     </actions>
                     <sub-events>
@@ -474,94 +479,53 @@
                                 <action id="3" name="Set character spacing" sid="380979947100919" type="DefaultFont">
                                     <param id="0" name="Character spacing">-2</param>
                                 </action>
+                                <action id="-3" name="Create object" sid="811895476513110" type="System">
+                                    <param id="0" name="Object to create">DefaultFont</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">240</param>
+                                    <param id="3" name="Y">406</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="856200991693836" type="DefaultFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Value">&quot;Backspace&quot;</param>
+                                </action>
+                                <action id="0" name="Set text" sid="812600909712991" type="DefaultFont">
+                                    <param id="0" name="Text">Self.Name</param>
+                                </action>
+                                <action id="2" name="Set scale" sid="998435721518481" type="DefaultFont">
+                                    <param id="0" name="Scale">2</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="213926146967241" type="DefaultFont">
+                                    <param id="0" name="Width">200</param>
+                                    <param id="1" name="Height">32</param>
+                                </action>
+                                <action id="3" name="Set character spacing" sid="753386756899309" type="DefaultFont">
+                                    <param id="0" name="Character spacing">-2</param>
+                                </action>
+                                <action id="-3" name="Create object" sid="585497159173369" type="System">
+                                    <param id="0" name="Object to create">DefaultFont</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">120</param>
+                                    <param id="3" name="Y">406</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="700970509715613" type="DefaultFont">
+                                    <param id="0" name="Instance variable">Name</param>
+                                    <param id="1" name="Value">&quot;Quit&quot;</param>
+                                </action>
+                                <action id="0" name="Set text" sid="875263338693901" type="DefaultFont">
+                                    <param id="0" name="Text">Self.Name</param>
+                                </action>
+                                <action id="2" name="Set scale" sid="617583939253705" type="DefaultFont">
+                                    <param id="0" name="Scale">2</param>
+                                </action>
+                                <action id="-7" name="Set size" sid="132323380668917" type="DefaultFont">
+                                    <param id="0" name="Width">120</param>
+                                    <param id="1" name="Height">32</param>
+                                </action>
+                                <action id="3" name="Set character spacing" sid="621285500440687" type="DefaultFont">
+                                    <param id="0" name="Character spacing">-2</param>
+                                </action>
                             </actions>
-                            <sub-events>
-                                <event-block sid="544809028897137">
-                                    <conditions>
-                                        <condition id="-32" name="Is on platform" sid="307831844067392" type="System">
-                                            <param id="0" name="Platform">0</param>
-                                        </condition>
-                                    </conditions>
-                                    <actions>
-                                        <action id="-3" name="Create object" sid="816336093553136" type="System">
-                                            <param id="0" name="Object to create">DefaultFont</param>
-                                            <param id="1" name="Layer">0</param>
-                                            <param id="2" name="X">120</param>
-                                            <param id="3" name="Y">406</param>
-                                        </action>
-                                        <action id="-10" name="Set value" sid="911543225878620" type="DefaultFont">
-                                            <param id="0" name="Instance variable">Name</param>
-                                            <param id="1" name="Value">&quot;Backspace&quot;</param>
-                                        </action>
-                                        <action id="0" name="Set text" sid="188222537609067" type="DefaultFont">
-                                            <param id="0" name="Text">Self.Name</param>
-                                        </action>
-                                        <action id="2" name="Set scale" sid="602322899266867" type="DefaultFont">
-                                            <param id="0" name="Scale">2</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="909795974572029" type="DefaultFont">
-                                            <param id="0" name="Width">320</param>
-                                            <param id="1" name="Height">32</param>
-                                        </action>
-                                        <action id="3" name="Set character spacing" sid="359428007303260" type="DefaultFont">
-                                            <param id="0" name="Character spacing">-2</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                                <event-block sid="390980831531183">
-                                    <conditions>
-                                        <condition id="-22" name="Else" sid="653379975198910" type="System" />
-                                    </conditions>
-                                    <actions>
-                                        <action id="-3" name="Create object" sid="555411366774184" type="System">
-                                            <param id="0" name="Object to create">DefaultFont</param>
-                                            <param id="1" name="Layer">0</param>
-                                            <param id="2" name="X">240</param>
-                                            <param id="3" name="Y">406</param>
-                                        </action>
-                                        <action id="-10" name="Set value" sid="659875614498569" type="DefaultFont">
-                                            <param id="0" name="Instance variable">Name</param>
-                                            <param id="1" name="Value">&quot;Backspace&quot;</param>
-                                        </action>
-                                        <action id="0" name="Set text" sid="808745303312450" type="DefaultFont">
-                                            <param id="0" name="Text">Self.Name</param>
-                                        </action>
-                                        <action id="2" name="Set scale" sid="426502145900996" type="DefaultFont">
-                                            <param id="0" name="Scale">2</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="192296723285471" type="DefaultFont">
-                                            <param id="0" name="Width">200</param>
-                                            <param id="1" name="Height">32</param>
-                                        </action>
-                                        <action id="3" name="Set character spacing" sid="327981208402852" type="DefaultFont">
-                                            <param id="0" name="Character spacing">-2</param>
-                                        </action>
-                                        <action id="-3" name="Create object" sid="388760252527189" type="System">
-                                            <param id="0" name="Object to create">DefaultFont</param>
-                                            <param id="1" name="Layer">0</param>
-                                            <param id="2" name="X">120</param>
-                                            <param id="3" name="Y">406</param>
-                                        </action>
-                                        <action id="-10" name="Set value" sid="652360464593410" type="DefaultFont">
-                                            <param id="0" name="Instance variable">Name</param>
-                                            <param id="1" name="Value">&quot;Quit&quot;</param>
-                                        </action>
-                                        <action id="0" name="Set text" sid="296928187046126" type="DefaultFont">
-                                            <param id="0" name="Text">Self.Name</param>
-                                        </action>
-                                        <action id="2" name="Set scale" sid="832903951973096" type="DefaultFont">
-                                            <param id="0" name="Scale">2</param>
-                                        </action>
-                                        <action id="-7" name="Set size" sid="230758235402435" type="DefaultFont">
-                                            <param id="0" name="Width">120</param>
-                                            <param id="1" name="Height">32</param>
-                                        </action>
-                                        <action id="3" name="Set character spacing" sid="432387392253286" type="DefaultFont">
-                                            <param id="0" name="Character spacing">-2</param>
-                                        </action>
-                                    </actions>
-                                </event-block>
-                            </sub-events>
                         </event-block>
                     </sub-events>
                 </event-block>
@@ -775,7 +739,19 @@
                                     <param id="2" name="Value">&quot;Quit&quot;</param>
                                 </condition>
                             </conditions>
-                            <actions />
+                            <actions>
+                                <action id="-9" name="Set value" sid="885628065212307" type="System">
+                                    <param id="0" name="Variable">Name</param>
+                                    <param id="1" name="Value">oldname</param>
+                                </action>
+                                <action id="0" name="Call function" sid="357244700804579" type="Function">
+                                    <param id="0" name="Name">&quot;Sound&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;MenuSelect&quot;</param>
+                                </action>
+                                <action id="-2" name="Go to layout" sid="803162820525464" type="System">
+                                    <param id="0" name="Layout">MainMenu</param>
+                                </action>
+                            </actions>
                         </event-block>
                         <event-block sid="157738390445238">
                             <conditions>
